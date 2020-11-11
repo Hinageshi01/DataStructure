@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Users\86136\Desktop\LinkList.cpp">
+    <ClCompile Include="source\LinkList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Users\86136\Desktop\MainLauncher.cpp">
+    <ClCompile Include="source\MainLauncher.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Users\86136\Desktop\SimpleCalculator.cpp">
+    <ClCompile Include="source\SimpleCalculator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

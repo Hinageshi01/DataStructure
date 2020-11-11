@@ -18,6 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\LinkList.cpp" />
+    <ClCompile Include="source\MainLauncher.cpp" />
+    <ClCompile Include="source\SimpleCalculator.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -138,11 +143,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Users\86136\Desktop\LinkList.cpp" />
-    <ClCompile Include="..\..\Users\86136\Desktop\MainLauncher.cpp" />
-    <ClCompile Include="..\..\Users\86136\Desktop\SimpleCalculator.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
