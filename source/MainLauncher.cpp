@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 typedef struct biTree {
     char data;
     struct biTree* lChild, * rChild;
@@ -208,29 +207,22 @@ void inorderTraversalThread(biThrTree* head) {
     }
 }
 
-biTree* getCharPointer(biTree* head, char x) {
-    stack<biTree*>vis;
-    biTree* tmp = head;
-    while (tmp || !vis.empty()) {
-        if (tmp) {
-            vis.push(tmp);
-            tmp = tmp->lChild;
-        }
-        else {
-            if (vis.top()->data == x) return vis.top();
-            tmp = vis.top()->rChild;
-            vis.pop();
+int putFathers(biTree* p, char x) {
+    if (!p) return 0;
+    if (p->data == x) return 1;
+    if (p) {
+        if (putFathers(p->lChild, x) || putFathers(p->rChild, x)) {
+            cout << p->data << " ";
+            return 1;
         }
     }
-    return NULL;
+    return 0;
 }
-
 
 int main()
 {
     biTree* root;
-    createBiTree(root, '@');
-
+    createBiTree(root, '*');
     /*pre->rChild = NULL;
     biThrTree* thrt, * head;
     createBiTree(thrt,'*');
