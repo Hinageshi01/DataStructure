@@ -52,16 +52,15 @@ void preorderTraversal(biTree* p, bool isRecursive) {
     }
     else {
         stack<biTree*>vis;
-        biTree* tmp = p;
-        while (tmp || !vis.empty())
+        while (p || !vis.empty())
         {
-            if (tmp) {
-                cout << tmp->data;
-                vis.push(tmp);
-                tmp = tmp->lChild;
+            if (p) {
+                cout << p->data;
+                vis.push(p);
+                p = p->lChild;
             }
             else {
-                tmp = vis.top()->rChild;
+                p = vis.top()->rChild;
                 vis.pop();
             }
         }
@@ -78,15 +77,14 @@ void inorderTraversal(biTree* p, bool isRecursive) {
     }
     else {
         stack<biTree*>vis;
-        biTree* tmp = p;
-        while (tmp || !vis.empty()) {
-            if (tmp) {
-                vis.push(tmp);
-                tmp = tmp->lChild;
+        while (p || !vis.empty()) {
+            if (p) {
+                vis.push(p);
+                p = p->lChild;
             }
             else {
                 cout << vis.top()->data;
-                tmp = vis.top()->rChild;
+                p = vis.top()->rChild;
                 vis.pop();
             }
         }
@@ -104,16 +102,15 @@ void postorderTraversal(biTree* p, bool isRecursive) {
     else
     {
         stack<biTree*>vis;
-        biTree* tmp = p;
-        while (tmp || !vis.empty()) {
-            if (tmp) {
-                vis.push(tmp);
-                tmp = tmp->lChild;
+        while (p || !vis.empty()) {
+            if (p) {
+                vis.push(p);
+                p = p->lChild;
             }
             else {
                 if (vis.top()->isFirst) {
                     vis.top()->isFirst = false;
-                    tmp = vis.top()->rChild;
+                    p = vis.top()->rChild;
                 }
                 else {
                     cout << vis.top()->data;
@@ -140,22 +137,22 @@ void levelorderTraversal(biTree* p) {
 int getDeepth(biTree* p) {
     if (!p) return 0;
     else {
-        int m = getDeepth(p->lChild), n = getDeepth(p->rChild);
-        if (m > n) return (m + 1);
-        else return (n + 1);
+        int lDeepth = getDeepth(p->lChild), rDeepth = getDeepth(p->rChild);
+        if (lDeepth > rDeepth) return (lDeepth + 1);
+        else return (rDeepth + 1);
     }
 }
 
-int getSize(biTree* T) {
-    if (T == NULL) return 0;
-    else return (1 + getSize(T->lChild) + getSize(T->rChild));
+int getSize(biTree* p) {
+    if (p == NULL) return 0;
+    else return (1 + getSize(p->lChild) + getSize(p->rChild));
 }
 
-int getLeafAmount(biTree* T) {
-    if (!T) return 0;
+int getLeafAmount(biTree* p) {
+    if (!p) return 0;
     else
-        if (!T->lChild && !T->rChild) return 1;
-        else  return getLeafAmount(T->lChild) + getLeafAmount(T->rChild);
+        if (!p->lChild && !p->rChild) return 1;
+        else  return getLeafAmount(p->lChild) + getLeafAmount(p->rChild);
 }
 
 //biTree* pre = new biTree{ ' ',NULL,NULL,false,false,true };
@@ -222,7 +219,19 @@ int putFathers(biTree* p, char x) {
 int main()
 {
     biTree* root;
-    createBiTree(root, '*');
+    createBiTree(root, '@');
+    preorderTraversal(root, 1); cout << " ";
+    preorderTraversal(root, 0);
+    cout << endl;
+    inorderTraversal(root, 1); cout << " ";
+    inorderTraversal(root, 0);
+    cout << endl;
+    postorderTraversal(root, 1); cout << " ";
+    postorderTraversal(root, 0);
+    cout << endl;
+    cout << getDeepth(root) <<  " ";
+    cout << getSize(root) <<  " ";
+    cout << getLeafAmount(root) <<  " ";
     /*pre->rChild = NULL;
     biThrTree* thrt, * head;
     createBiTree(thrt,'*');
