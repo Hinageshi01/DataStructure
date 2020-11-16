@@ -216,25 +216,25 @@ int putFathers(biTree* p, char x) {
     return 0;
 }
 
-int main()
-{
-    biTree* root;
-    createBiTree(root, '@');
-    preorderTraversal(root, 1); cout << " ";
-    preorderTraversal(root, 0);
-    cout << endl;
-    inorderTraversal(root, 1); cout << " ";
-    inorderTraversal(root, 0);
-    cout << endl;
-    postorderTraversal(root, 1); cout << " ";
-    postorderTraversal(root, 0);
-    cout << endl;
-    cout << getDeepth(root) <<  " ";
-    cout << getSize(root) <<  " ";
-    cout << getLeafAmount(root) <<  " ";
-    /*pre->rChild = NULL;
-    biThrTree* thrt, * head;
-    createBiTree(thrt,'*');
-    inorderThreadingWithHead(thrt,head);*/
-    return 0;
-}
+//int main()
+//{
+//    biTree* root;
+//    createBiTree(root, '@');
+//    preorderTraversal(root, 1); cout << " ";
+//    preorderTraversal(root, 0);
+//    cout << endl;
+//    inorderTraversal(root, 1); cout << " ";
+//    inorderTraversal(root, 0);
+//    cout << endl;
+//    postorderTraversal(root, 1); cout << " ";
+//    postorderTraversal(root, 0);
+//    cout << endl;
+//    cout << getDeepth(root) <<  " ";
+//    cout << getSize(root) <<  " ";
+//    cout << getLeafAmount(root) <<  " ";
+//    /*pre->rChild = NULL;
+//    biThrTree* thrt, * head;
+//    createBiTree(thrt,'*');
+//    inorderThreadingWithHead(thrt,head);*/
+//    return 0;
+//}

@@ -18,10 +18,13 @@
     <ClCompile Include="source\LinkList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="source\MainLauncher.cpp">
+    <ClCompile Include="source\SimpleCalculator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="source\SimpleCalculator.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source\BiTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

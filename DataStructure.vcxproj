@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="source\LinkList.cpp" />
-    <ClCompile Include="source\MainLauncher.cpp" />
+    <ClCompile Include="source\BiTree.cpp" />
     <ClCompile Include="source\SimpleCalculator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
