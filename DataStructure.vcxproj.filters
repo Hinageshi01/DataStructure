@@ -21,10 +21,10 @@
     <ClCompile Include="source\SimpleCalculator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="source\BiTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="source\BiTree.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
