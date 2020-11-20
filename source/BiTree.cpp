@@ -121,16 +121,27 @@ void postorderTraversal(biTree* p, bool isRecursive) {
     }
 }
 
+void doubleTraversal(biTree* p) {
+    if (p) {
+        cout << p->data;
+        doubleTraversal(p->lChild);
+        cout << p->data;
+        doubleTraversal(p->rChild);
+    }
+}
+
 void levelorderTraversal(biTree* p) {
-    queue<biTree*> vis;
-    vis.push(p);
-    while (!vis.empty()) {
-        cout << vis.front()->data;
-        if (vis.front()->lChild)
-            vis.push(vis.front()->lChild);
-        if (vis.front()->rChild)
-            vis.push(vis.front()->rChild);
-        vis.pop();
+    if (p) {
+        queue<biTree*> vis;
+        vis.push(p);
+        while (!vis.empty()) {
+            cout << vis.front()->data;
+            if (vis.front()->lChild)
+                vis.push(vis.front()->lChild);
+            if (vis.front()->rChild)
+                vis.push(vis.front()->rChild);
+            vis.pop();
+        }
     }
 }
 
@@ -144,7 +155,7 @@ int getDeepth(biTree* p) {
 }
 
 int getSize(biTree* p) {
-    if (p == NULL) return 0;
+    if (!p) return 0;
     else return (1 + getSize(p->lChild) + getSize(p->rChild));
 }
 
@@ -153,6 +164,28 @@ int getLeafAmount(biTree* p) {
     else
         if (!p->lChild && !p->rChild) return 1;
         else  return getLeafAmount(p->lChild) + getLeafAmount(p->rChild);
+}
+
+int getLevelWidth(biTree* p, int level) {
+    if (!p) return 0;
+    else {
+        if (level == 1) return 1;
+        return getLevelWidth(p->lChild, level - 1) + getLevelWidth(p->rChild, level - 1);
+    }
+}
+
+int getWidth(biTree* p) {
+    if (!p) return 0;
+    if (p) {
+        int deep = getDeepth(p), maxWidth = 0;
+        int* widths = new int[deep + 5];
+        memset(widths, 0, sizeof(widths));
+        for (int i = 1; i <= deep; i++) {
+            widths[i] = getLevelWidth(p, i);
+            if (widths[i] >= maxWidth) maxWidth = widths[i];
+        }
+        return maxWidth;
+    }
 }
 
 //biTree* pre = new biTree{ ' ',NULL,NULL,false,false,true };
@@ -216,25 +249,31 @@ int putFathers(biTree* p, char x) {
     return 0;
 }
 
-//int main()
-//{
-//    /*biTree* root;
-//    createBiTree(root, '@');
-//    preorderTraversal(root, 1); cout << " ";
-//    preorderTraversal(root, 0);
-//    cout << endl;
-//    inorderTraversal(root, 1); cout << " ";
-//    inorderTraversal(root, 0);
-//    cout << endl;
-//    postorderTraversal(root, 1); cout << " ";
-//    postorderTraversal(root, 0);
-//    cout << endl;
-//    cout << getDeepth(root) <<  " ";
-//    cout << getSize(root) <<  " ";
-//    cout << getLeafAmount(root) <<  " ";*/
-//    biThrTree* thrt, * head;
-//    createBiTree(thrt,'@');
-//    inorderThreadingWithHead(thrt,head);
-//    inorderTraversalThread(head);
-//    return 0;
-//}
+int main()
+{
+    biTree* root;
+    createBiTree(root, '@');
+    preorderTraversal(root, 1); cout << " ";
+    preorderTraversal(root, 0);
+    cout << endl;
+    inorderTraversal(root, 1); cout << " ";
+    inorderTraversal(root, 0);
+    cout << endl;
+    postorderTraversal(root, 1); cout << " ";
+    postorderTraversal(root, 0);
+    cout << endl;
+    cout << getDeepth(root) << " ";
+    cout << getSize(root) << " ";
+    cout << getLeafAmount(root);
+    cout << endl;
+    doubleTraversal(root);
+    cout << endl;
+    levelorderTraversal(root);
+    cout << endl;
+    cout << getWidth(root);
+    /*biThrTree* thrt, * head;
+    createBiTree(thrt,'@');
+    inorderThreadingWithHead(thrt,head);
+    inorderTraversalThread(head);*/
+    return 0;
+}
