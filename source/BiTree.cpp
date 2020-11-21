@@ -243,7 +243,7 @@ int putFathers(biTree* p, char x) {
     if (p) {
         if (putFathers(p->lChild, x) || putFathers(p->rChild, x)) {
             cout << p->data << " ";
-            return 1;//return 0;则只输出目标值的父节点
+            return 1;//return 0; Only put the parent node of the target value.
         }
     }
     return 0;
