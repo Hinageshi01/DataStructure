@@ -183,7 +183,7 @@ int getWidth(biTree* p) {
 
 //biTree* pre = new biTree{ ' ',NULL,NULL,false,false,true };
 biThrTree* pre = new biThrTree;
-void inorderThreading(biThrTree*& p) {
+void inorderThreading(biThrTree* p) {
     if (p) {
         inorderThreading(p->lChild);
         if (!p->lChild) {
@@ -204,10 +204,8 @@ void inorderThreading(biThrTree*& p) {
 void inorderThreadingWithHead(biThrTree* p, biThrTree*& head) {
     head = new biThrTree;
     head->lTag = 0; head->rTag = 1;
-    head->rChild = head;
-    if (!p)
-        head->lChild = head;
-    else {
+    head->lChild = head->rChild = head;
+    if (p){
         head->lChild = p;
         pre = head;
         inorderThreading(p);
@@ -217,7 +215,7 @@ void inorderThreadingWithHead(biThrTree* p, biThrTree*& head) {
     }
 }
 
-void inorderTraversalThread(biThrTree* head) {
+void inorderThreadTraversal(biThrTree* head) {
     biThrTree* p = head->lChild;
     while (p != head) {
         while (!p->lTag) p = p->lChild;
@@ -242,12 +240,12 @@ int putFathers(biTree* p, char x) {
 
 int main()
 {
-    biTree* root;
+    /*biTree* root;
     createBiTree(root, '@');
-    cout << getLeafAmount(root);
-    /*biThrTree* thrt, * head;
+    cout << getLeafAmount(root);*/
+    biThrTree* thrt, * head;
     createBiTree(thrt,'@');
     inorderThreadingWithHead(thrt,head);
-    inorderTraversalThread(head);*/
+    inorderThreadTraversal(head);
     return 0;
 }
