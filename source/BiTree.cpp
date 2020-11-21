@@ -243,7 +243,7 @@ int putFathers(biTree* p, char x) {
     if (p) {
         if (putFathers(p->lChild, x) || putFathers(p->rChild, x)) {
             cout << p->data << " ";
-            return 1;
+            return 1;//return 0;则只输出目标值的父节点
         }
     }
     return 0;
@@ -253,24 +253,7 @@ int main()
 {
     biTree* root;
     createBiTree(root, '@');
-    preorderTraversal(root, 1); cout << " ";
-    preorderTraversal(root, 0);
-    cout << endl;
-    inorderTraversal(root, 1); cout << " ";
-    inorderTraversal(root, 0);
-    cout << endl;
-    postorderTraversal(root, 1); cout << " ";
-    postorderTraversal(root, 0);
-    cout << endl;
-    cout << getDeepth(root) << " ";
-    cout << getSize(root) << " ";
-    cout << getLeafAmount(root);
-    cout << endl;
-    doubleTraversal(root);
-    cout << endl;
-    levelorderTraversal(root);
-    cout << endl;
-    cout << getWidth(root);
+    putFathers(root, 'F');
     /*biThrTree* thrt, * head;
     createBiTree(thrt,'@');
     inorderThreadingWithHead(thrt,head);
