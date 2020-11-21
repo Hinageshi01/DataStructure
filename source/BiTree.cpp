@@ -147,45 +147,38 @@ void levelorderTraversal(biTree* p) {
 
 int getDeepth(biTree* p) {
     if (!p) return 0;
-    else {
-        int lDeepth = getDeepth(p->lChild), rDeepth = getDeepth(p->rChild);
-        if (lDeepth > rDeepth) return (lDeepth + 1);
-        else return (rDeepth + 1);
-    }
+    int lDeepth = getDeepth(p->lChild), rDeepth = getDeepth(p->rChild);
+    if (lDeepth >= rDeepth) return (lDeepth + 1);
+    return (rDeepth + 1);
 }
 
 int getSize(biTree* p) {
     if (!p) return 0;
-    else return (1 + getSize(p->lChild) + getSize(p->rChild));
+    return (1 + getSize(p->lChild) + getSize(p->rChild));
 }
 
 int getLeafAmount(biTree* p) {
     if (!p) return 0;
-    else
-        if (!p->lChild && !p->rChild) return 1;
-        else  return getLeafAmount(p->lChild) + getLeafAmount(p->rChild);
+    if (!p->lChild && !p->rChild) return 1;
+    else return getLeafAmount(p->lChild) + getLeafAmount(p->rChild);
 }
 
 int getLevelWidth(biTree* p, int level) {
     if (!p) return 0;
-    else {
-        if (level == 1) return 1;
-        return getLevelWidth(p->lChild, level - 1) + getLevelWidth(p->rChild, level - 1);
-    }
+    if (level == 1) return 1;
+    return getLevelWidth(p->lChild, level - 1) + getLevelWidth(p->rChild, level - 1);
 }
 
 int getWidth(biTree* p) {
     if (!p) return 0;
-    if (p) {
-        int deep = getDeepth(p), maxWidth = 0;
-        int* widths = new int[deep + 5];
-        memset(widths, 0, sizeof(widths));
-        for (int i = 1; i <= deep; i++) {
-            widths[i] = getLevelWidth(p, i);
-            if (widths[i] >= maxWidth) maxWidth = widths[i];
-        }
-        return maxWidth;
+    int deep = getDeepth(p), maxWidth = 0;
+    int* widths = new int[deep + 5];
+    memset(widths, 0, sizeof(widths));
+    for (int i = 1; i <= deep; i++) {
+        widths[i] = getLevelWidth(p, i);
+        if (widths[i] >= maxWidth) maxWidth = widths[i];
     }
+    return maxWidth;
 }
 
 //biTree* pre = new biTree{ ' ',NULL,NULL,false,false,true };
@@ -240,11 +233,9 @@ void inorderTraversalThread(biThrTree* head) {
 int putFathers(biTree* p, char x) {
     if (!p) return 0;
     if (p->data == x) return 1;
-    if (p) {
-        if (putFathers(p->lChild, x) || putFathers(p->rChild, x)) {
-            cout << p->data << " ";
-            return 1;//return 0; Only put the parent node of the target value.
-        }
+    if (putFathers(p->lChild, x) || putFathers(p->rChild, x)) {
+        cout << p->data << " ";
+        return 1;//return 0; Only put the parent node of the target value.
     }
     return 0;
 }
