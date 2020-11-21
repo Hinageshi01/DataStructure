@@ -160,7 +160,7 @@ int getSize(biTree* p) {
 int getLeafAmount(biTree* p) {
     if (!p) return 0;
     if (!p->lChild && !p->rChild) return 1;
-    else return getLeafAmount(p->lChild) + getLeafAmount(p->rChild);
+    return getLeafAmount(p->lChild) + getLeafAmount(p->rChild);
 }
 
 int getLevelWidth(biTree* p, int level) {
@@ -244,7 +244,7 @@ int main()
 {
     biTree* root;
     createBiTree(root, '@');
-    putFathers(root, 'F');
+    cout << getLeafAmount(root);
     /*biThrTree* thrt, * head;
     createBiTree(thrt,'@');
     inorderThreadingWithHead(thrt,head);
