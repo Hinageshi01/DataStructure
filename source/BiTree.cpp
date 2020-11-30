@@ -171,12 +171,10 @@ int getLevelWidth(biTree* p, int level) {
 
 int getWidth(biTree* p) {
     if (!p) return 0;
-    int deep = getDeepth(p), maxWidth = 0;
-    int* widths = new int[deep + 5];
-    memset(widths, 0, sizeof(widths));
+    int deep = getDeepth(p), maxWidth = 0, tmpWidth;
     for (int i = 1; i <= deep; i++) {
-        widths[i] = getLevelWidth(p, i);
-        if (widths[i] >= maxWidth) maxWidth = widths[i];
+        tmpWidth = getLevelWidth(p, i);
+        if (tmpWidth >= maxWidth) maxWidth = tmpWidth;
     }
     return maxWidth;
 }
@@ -240,12 +238,12 @@ int putFathers(biTree* p, char x) {
 
 int main()
 {
-    /*biTree* root;
+    biTree* root;
     createBiTree(root, '@');
-    cout << getLeafAmount(root);*/
-    biThrTree* thrt, * head;
+    cout << getWidth(root);
+    /*biThrTree* thrt, * head;
     createBiTree(thrt,'@');
     inorderThreadingWithHead(thrt,head);
-    inorderThreadTraversal(head);
+    inorderThreadTraversal(head);*/
     return 0;
 }
