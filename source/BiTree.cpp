@@ -3,25 +3,25 @@
 
 using namespace std;
 
-typedef struct biTree {
+typedef struct BiTree {
     char data;
-    struct biTree* lChild, * rChild;
+    struct BiTree* lChild, * rChild;
     bool isFirst;
-}biTree;
+}BiTree;
 
-typedef struct biThrTree {
+typedef struct BiThrTree {
     char data;
-    struct biThrTree* lChild, * rChild;
+    struct BiThrTree* lChild, * rChild;
     bool lTag, rTag;
-}biThrTree;
+}BiThrTree;
 
-void createBiTree(biTree*& p, char nullPointerCharacter) {//DRL
+void createBiTree(BiTree*& p, char nullPointerCharacter) {//DRL
     char dataIn;
     cin >> dataIn;
     if (dataIn == nullPointerCharacter)
         p = NULL;
     else {
-        p = new biTree;
+        p = new BiTree;
         p->data = dataIn;
         p->isFirst = true;
         createBiTree(p->lChild, nullPointerCharacter);
@@ -29,20 +29,20 @@ void createBiTree(biTree*& p, char nullPointerCharacter) {//DRL
     }
 }
 
-void createBiTree(biThrTree*& p, char nullPointerCharacter) {//DRL
+void createBiTree(BiThrTree*& p, char nullPointerCharacter) {//DRL
     char dataIn;
     cin >> dataIn;
     if (dataIn == nullPointerCharacter)
         p = NULL;
     else {
-        p = new biThrTree;
+        p = new BiThrTree;
         p->data = dataIn;
         createBiTree(p->lChild, nullPointerCharacter);
         createBiTree(p->rChild, nullPointerCharacter);
     }
 }
 
-void preorderTraversal(biTree* p, bool isRecursive) {
+void preorderTraversal(BiTree* p, bool isRecursive) {
     if (isRecursive) {
         if (p) {
             cout << p->data;
@@ -51,7 +51,7 @@ void preorderTraversal(biTree* p, bool isRecursive) {
         }
     }
     else {
-        stack<biTree*>vis;
+        stack<BiTree*>vis;
         while (p || !vis.empty()) {
             if (p) {
                 cout << p->data;
@@ -66,7 +66,7 @@ void preorderTraversal(biTree* p, bool isRecursive) {
     }
 }
 
-void inorderTraversal(biTree* p, bool isRecursive) {
+void inorderTraversal(BiTree* p, bool isRecursive) {
     if (isRecursive) {
         if (p) {
             inorderTraversal(p->lChild, isRecursive);
@@ -75,7 +75,7 @@ void inorderTraversal(biTree* p, bool isRecursive) {
         }
     }
     else {
-        stack<biTree*>vis;
+        stack<BiTree*>vis;
         while (p || !vis.empty()) {
             if (p) {
                 vis.push(p);
@@ -90,7 +90,7 @@ void inorderTraversal(biTree* p, bool isRecursive) {
     }
 }
 
-void postorderTraversal(biTree* p, bool isRecursive) {
+void postorderTraversal(BiTree* p, bool isRecursive) {
     if (isRecursive) {
         if (p) {
             postorderTraversal(p->lChild, isRecursive);
@@ -100,7 +100,7 @@ void postorderTraversal(biTree* p, bool isRecursive) {
     }
     else
     {
-        stack<biTree*>vis;
+        stack<BiTree*>vis;
         while (p || !vis.empty()) {
             if (p) {
                 vis.push(p);
@@ -120,7 +120,7 @@ void postorderTraversal(biTree* p, bool isRecursive) {
     }
 }
 
-void doubleTraversal(biTree* p) {
+void doubleTraversal(BiTree* p) {
     if (p) {
         cout << p->data;
         doubleTraversal(p->lChild);
@@ -129,9 +129,9 @@ void doubleTraversal(biTree* p) {
     }
 }
 
-void levelorderTraversal(biTree* p) {
+void levelorderTraversal(BiTree* p) {
     if (p) {
-        queue<biTree*> vis;
+        queue<BiTree*> vis;
         vis.push(p);
         while (!vis.empty()) {
             cout << vis.front()->data;
@@ -144,7 +144,7 @@ void levelorderTraversal(biTree* p) {
     }
 }
 
-int getDeepth(biTree* p) {
+int getDeepth(BiTree* p) {
     if (!p)
         return 0;
     int lDeepth = getDeepth(p->lChild), rDeepth = getDeepth(p->rChild);
@@ -153,13 +153,13 @@ int getDeepth(biTree* p) {
     return (rDeepth + 1);
 }
 
-int getSize(biTree* p) {
+int getSize(BiTree* p) {
     if (!p)
         return 0;
     return (1 + getSize(p->lChild) + getSize(p->rChild));
 }
 
-int getLeafAmount(biTree* p) {
+int getLeafAmount(BiTree* p) {
     if (!p)
         return 0;
     if (!p->lChild && !p->rChild)
@@ -167,7 +167,7 @@ int getLeafAmount(biTree* p) {
     return getLeafAmount(p->lChild) + getLeafAmount(p->rChild);
 }
 
-int getLevelWidth(biTree* p, int level) {
+int getLevelWidth(BiTree* p, int level) {
     if (!p)
         return 0;
     if (level == 1)
@@ -175,7 +175,7 @@ int getLevelWidth(biTree* p, int level) {
     return getLevelWidth(p->lChild, level - 1) + getLevelWidth(p->rChild, level - 1);
 }
 
-int getWidth(biTree* p) {
+int getWidth(BiTree* p) {
     if (!p)
         return 0;
     int deep = getDeepth(p), maxWidth = 0, tmpWidth;
@@ -188,8 +188,8 @@ int getWidth(biTree* p) {
 }
 
 //biTree* pre = new biTree{ ' ',NULL,NULL,false,false,true };
-biThrTree* pre = new biThrTree;
-void inorderThreading(biThrTree* p) {
+BiThrTree* pre = new BiThrTree;
+void inorderThreading(BiThrTree* p) {
     if (p) {
         inorderThreading(p->lChild);
         if (!p->lChild) {
@@ -207,8 +207,8 @@ void inorderThreading(biThrTree* p) {
     }
 }
 
-void inorderThreadingWithHead(biThrTree* p, biThrTree*& head) {
-    head = new biThrTree;
+void inorderThreadingWithHead(BiThrTree* p, BiThrTree*& head) {
+    head = new BiThrTree;
     head->lTag = 0; head->rTag = 1;
     head->lChild = head->rChild = head;
     if (p){
@@ -221,8 +221,8 @@ void inorderThreadingWithHead(biThrTree* p, biThrTree*& head) {
     }
 }
 
-void inorderThreadTraversal(biThrTree* head) {
-    biThrTree* p = head->lChild;
+void inorderThreadTraversal(BiThrTree* head) {
+    BiThrTree* p = head->lChild;
     while (p != head) {
         while (!p->lTag) {
             p = p->lChild;
@@ -236,7 +236,7 @@ void inorderThreadTraversal(biThrTree* head) {
     }
 }
 
-int putFathers(biTree* p, char x) {
+int putFathers(BiTree* p, char x) {
     if (!p)
         return 0;
     if (p->data == x)
@@ -250,10 +250,10 @@ int putFathers(biTree* p, char x) {
 
 //int main()
 //{
-//    biTree* root;
+//    BiTree* root;
 //    createBiTree(root, '@');
 //    cout << getWidth(root);
-//    /*biThrTree* thrt, * head;
+//    /*BiThrTree* thrt, * head;
 //    createBiTree(thrt,'@');
 //    inorderThreadingWithHead(thrt,head);
 //    inorderThreadTraversal(head);*/
