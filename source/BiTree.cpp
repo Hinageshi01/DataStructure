@@ -52,8 +52,7 @@ void preorderTraversal(biTree* p, bool isRecursive) {
     }
     else {
         stack<biTree*>vis;
-        while (p || !vis.empty())
-        {
+        while (p || !vis.empty()) {
             if (p) {
                 cout << p->data;
                 vis.push(p);
@@ -146,35 +145,44 @@ void levelorderTraversal(biTree* p) {
 }
 
 int getDeepth(biTree* p) {
-    if (!p) return 0;
+    if (!p)
+        return 0;
     int lDeepth = getDeepth(p->lChild), rDeepth = getDeepth(p->rChild);
-    if (lDeepth >= rDeepth) return (lDeepth + 1);
+    if (lDeepth >= rDeepth)
+        return (lDeepth + 1);
     return (rDeepth + 1);
 }
 
 int getSize(biTree* p) {
-    if (!p) return 0;
+    if (!p)
+        return 0;
     return (1 + getSize(p->lChild) + getSize(p->rChild));
 }
 
 int getLeafAmount(biTree* p) {
-    if (!p) return 0;
-    if (!p->lChild && !p->rChild) return 1;
+    if (!p)
+        return 0;
+    if (!p->lChild && !p->rChild)
+        return 1;
     return getLeafAmount(p->lChild) + getLeafAmount(p->rChild);
 }
 
 int getLevelWidth(biTree* p, int level) {
-    if (!p) return 0;
-    if (level == 1) return 1;
+    if (!p)
+        return 0;
+    if (level == 1)
+        return 1;
     return getLevelWidth(p->lChild, level - 1) + getLevelWidth(p->rChild, level - 1);
 }
 
 int getWidth(biTree* p) {
-    if (!p) return 0;
+    if (!p)
+        return 0;
     int deep = getDeepth(p), maxWidth = 0, tmpWidth;
     for (int i = 1; i <= deep; i++) {
         tmpWidth = getLevelWidth(p, i);
-        if (tmpWidth >= maxWidth) maxWidth = tmpWidth;
+        if (tmpWidth >= maxWidth)
+            maxWidth = tmpWidth;
     }
     return maxWidth;
 }
@@ -216,7 +224,9 @@ void inorderThreadingWithHead(biThrTree* p, biThrTree*& head) {
 void inorderThreadTraversal(biThrTree* head) {
     biThrTree* p = head->lChild;
     while (p != head) {
-        while (!p->lTag) p = p->lChild;
+        while (!p->lTag) {
+            p = p->lChild;
+        }
         cout << p->data;
         while (p->rTag && p->rChild != head) {
             p = p->rChild;
@@ -227,8 +237,10 @@ void inorderThreadTraversal(biThrTree* head) {
 }
 
 int putFathers(biTree* p, char x) {
-    if (!p) return 0;
-    if (p->data == x) return 1;
+    if (!p)
+        return 0;
+    if (p->data == x)
+        return 1;
     if (putFathers(p->lChild, x) || putFathers(p->rChild, x)) {
         cout << p->data << " ";
         return 1;//return 0; Only put the parent node of the target value.
@@ -236,14 +248,14 @@ int putFathers(biTree* p, char x) {
     return 0;
 }
 
-int main()
-{
-    biTree* root;
-    createBiTree(root, '@');
-    cout << getWidth(root);
-    /*biThrTree* thrt, * head;
-    createBiTree(thrt,'@');
-    inorderThreadingWithHead(thrt,head);
-    inorderThreadTraversal(head);*/
-    return 0;
-}
+//int main()
+//{
+//    biTree* root;
+//    createBiTree(root, '@');
+//    cout << getWidth(root);
+//    /*biThrTree* thrt, * head;
+//    createBiTree(thrt,'@');
+//    inorderThreadingWithHead(thrt,head);
+//    inorderThreadTraversal(head);*/
+//    return 0;
+//}

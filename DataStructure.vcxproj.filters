@@ -24,5 +24,8 @@
     <ClCompile Include="source\BiTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="source\Graph.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

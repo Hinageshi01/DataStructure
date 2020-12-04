@@ -22,6 +22,7 @@
     <ClCompile Include="source\LinkList.cpp" />
     <ClCompile Include="source\BiTree.cpp" />
     <ClCompile Include="source\SimpleCalculator.cpp" />
+    <ClCompile Include="source\Graph.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
