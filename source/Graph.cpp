@@ -55,9 +55,8 @@ void GFSAdjList(Graph G, vexType firstVex) {
     queue<vexType> vis;
     bool visited[MAX_VEX] = { false };
     vis.push(firstVex);
-    int index = getIndex(G, firstVex);
     while (!vis.empty()) {
-        index = getIndex(G, vis.front());
+        int index = getIndex(G, vis.front());
         vis.pop();
         if (!visited[index]) {
             cout << "v" << G.adjList[index].name << " ";
@@ -73,7 +72,7 @@ void GFSAdjList(Graph G, vexType firstVex) {
     }
 }
 
-void reversePush(Graph G, AdjListNode* p, stack<vexType>& vis, bool visited[MAX_VEX]) {
+void reversePush(Graph G, AdjListNode* p, stack<vexType>& vis, bool visited[MAX_VEX]) {//Reverse push one line into stack
     if (p) {
         reversePush(G, p->next, vis, visited);
         int index2 = getIndex(G, p->name);
@@ -100,8 +99,8 @@ void DFSAdjList(Graph G, vexType firstVex) {
 }
 
 void putAdjList(Graph G) {
-    for (int i = 0; i < G.vexNum; i++) {
-        cout << i + 1 << ":";
+    for (int i = 1; i <= G.vexNum; i++) {
+        cout << i  << ":";
         AdjListNode* p = G.adjList[i].next;
         while (p) {
             cout << p->name << " ";
@@ -136,6 +135,7 @@ int getInDegree(Graph G, vexType vex) {
 
 int main()
 {
+    Graph G;
 
     return 0;
 }
