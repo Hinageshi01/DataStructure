@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -100,7 +100,7 @@ void DFSAdjList(Graph G, vexType firstVex) {
 
 void putAdjList(Graph G) {
     for (int i = 1; i <= G.vexNum; i++) {
-        cout << i  << ":";
+        cout << i << ":";
         AdjListNode* p = G.adjList[i].next;
         while (p) {
             cout << p->name << " ";
@@ -110,7 +110,7 @@ void putAdjList(Graph G) {
     }
 }
 
-int getOutDegree(Graph G, vexType vex) { 
+int getOutDegree(Graph G, vexType vex) {
     int index = getIndex(G, vex), sum = 0;
     AdjListNode* p = G.adjList[index].next;
     while (p) {
@@ -119,10 +119,10 @@ int getOutDegree(Graph G, vexType vex) {
     }
     return sum;
 }
-        
+
 int getInDegree(Graph G, vexType vex) {
     int barrel[MAX_VEX] = { 0 };
-    for(int i=0;i<G.vexNum;i++){
+    for (int i = 0; i < G.vexNum; i++) {
         AdjListNode* p = G.adjList[i].next;
         while (p) {
             int index = getIndex(G, p->name);
@@ -137,5 +137,5 @@ int main()
 {
     Graph G;
 
-    return 0;
+    return 1;
 }

@@ -15,8 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\Graph.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ClCompile Include="SimpleCalculator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

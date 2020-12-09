@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -187,7 +187,6 @@ int getWidth(BiTree* p) {
     return maxWidth;
 }
 
-//biTree* pre = new biTree{ ' ',NULL,NULL,false,false,true };
 BiThrTree* pre = new BiThrTree;
 void inorderThreading(BiThrTree* p) {
     if (p) {
@@ -211,7 +210,7 @@ void inorderThreadingWithHead(BiThrTree* p, BiThrTree*& head) {
     head = new BiThrTree;
     head->lTag = 0; head->rTag = 1;
     head->lChild = head->rChild = head;
-    if (p){
+    if (p) {
         head->lChild = p;
         pre = head;
         inorderThreading(p);
@@ -248,14 +247,14 @@ int putFathers(BiTree* p, char x) {
     return 0;
 }
 
-//int main()
-//{
-//    BiTree* root;
-//    createBiTree(root, '@');
-//    cout << getWidth(root);
-//    /*BiThrTree* thrt, * head;
-//    createBiTree(thrt,'@');
-//    inorderThreadingWithHead(thrt,head);
-//    inorderThreadTraversal(head);*/
-//    return 0;
-//}
+int main()
+{
+    BiTree* root;
+    createBiTree(root, '@');
+    cout << getWidth(root);
+    /*BiThrTree* thrt, * head;
+    createBiTree(thrt,'@');
+    inorderThreadingWithHead(thrt,head);
+    inorderThreadTraversal(head);*/
+    return 0;
+}

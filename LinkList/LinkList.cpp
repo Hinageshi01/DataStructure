@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -56,7 +56,7 @@ void incrementalInsert(node*& head, node*& tail, int dataIn) {
 
 void deleteEven(node*& head) {
 	node* p = head, * tmp;
-	while (true){
+	while (true) {
 		if (p->next == NULL) return;
 		if (!(p->next->data & 1)) {
 			tmp = p->next;
@@ -69,9 +69,14 @@ void deleteEven(node*& head) {
 
 void printList(node* p) {//from head->next to tail
 	p = p->next;
-	while (true){
+	while (true) {
 		cout << p->data << " ";
 		if (p->next == NULL) return;
 		p = p->next;
 	}
+}
+
+int main() {
+
+	return 1;
 }
