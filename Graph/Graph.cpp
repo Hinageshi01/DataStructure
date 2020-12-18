@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define MAX_VEX 124
+#define MAX_VEX 1024
 typedef int vexType;
 
 typedef struct AdjListNode {
@@ -72,6 +72,7 @@ void GFSAdjList(Graph G, vexType firstVex) {
     }
 }
 
+/**No need to use this function in common situation, it's just prepare for the stupid RuiGeOJ*/
 void reversePush(Graph G, AdjListNode* p, stack<vexType>& vis, bool visited[MAX_VEX]) {//Reverse push one line into stack
     if (p) {
         reversePush(G, p->next, vis, visited);
@@ -133,9 +134,41 @@ int getInDegree(Graph G, vexType vex) {
     return barrel[getIndex(G, vex)];
 }
 
+bool toopSort(Graph G) {
+    int inDegree[MAX_VEX], cnt = 0;
+    stack<vexType> vis;
+    vexType tmpVex;
+    for (int i = 0; i < G.vexNum; i++) {
+        tmpVex = G.adjList[i].name;
+        inDegree[i] = getInDegree(G, tmpVex);
+        if (!inDegree[i])
+            vis.push(G.adjList[i].name);
+    }
+    while (!vis.empty()) {
+        tmpVex = vis.top();
+        cout << "v" << tmpVex << " ";
+        vis.pop();
+        cnt++;
+        int i = getIndex(G, tmpVex);
+        AdjListNode* p = G.adjList[i].next;
+        while (p) {
+            tmpVex = p->name;
+            int j = getIndex(G, tmpVex);
+            inDegree[j]--;
+            if (!inDegree[j])
+                vis.push(tmpVex);
+            p = p->next;
+        }
+    }
+    if (cnt < G.vexNum)
+        return false;
+    return true;
+}
+
 int main()
 {
     Graph G;
-
+    createAdjList(G, true);
+    toopSort(G);
     return 1;
 }
