@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define MAX_VEX 1024
+#define MAX_VEX 100
 typedef int vexType;
 
 typedef struct AdjListNode {
@@ -21,9 +21,8 @@ int getIndex(Graph G, vexType vex) {
     int index;
     for (index = 0; index < G.vexNum; index++) {
         if (G.adjList[index].name == vex)
-            break;
+            return index;
     }
-    return index;
 }
 
 void createAdjList(Graph& G, bool isDirected) {
@@ -76,8 +75,8 @@ void GFSAdjList(Graph G, vexType firstVex) {
 void reversePush(Graph G, AdjListNode* p, stack<vexType>& vis, bool visited[MAX_VEX]) {//Reverse push one line into stack
     if (p) {
         reversePush(G, p->next, vis, visited);
-        int index2 = getIndex(G, p->name);
-        if (!visited[index2])
+        int j = getIndex(G, p->name);
+        if (!visited[j])
             vis.push(p->name);
     }
 }
@@ -86,15 +85,14 @@ void DFSAdjList(Graph G, vexType firstVex) {
     stack<vexType> vis;
     bool visited[MAX_VEX] = { false };
     vis.push(firstVex);
-    int index = getIndex(G, firstVex);
     while (!vis.empty()) {
-        index = getIndex(G, vis.top());
+        int i = getIndex(G, vis.top());
         vis.pop();
-        if (!visited[index]) {
-            cout << "v" << G.adjList[index].name << " ";
-            visited[index] = true;//Only mark when output
+        if (!visited[i]) {
+            cout << "v" << G.adjList[i].name << " ";
+            visited[i] = true;//Only mark when output
         }
-        AdjListNode* p = G.adjList[index].next;
+        AdjListNode* p = G.adjList[i].next;
         reversePush(G, p, vis, visited);
     }
 }
@@ -135,7 +133,7 @@ int getInDegree(Graph G, vexType vex) {
 }
 
 bool toopSort(Graph G) {
-    int inDegree[MAX_VEX], cnt = 0;
+    int inDegree[MAX_VEX] = { 0 }, cnt = 0;
     stack<vexType> vis;
     vexType tmpVex;
     for (int i = 0; i < G.vexNum; i++) {
@@ -168,7 +166,7 @@ bool toopSort(Graph G) {
 int main()
 {
     Graph G;
-    createAdjList(G, true);
-    toopSort(G);
+    createAdjList(G, false);
+    DFSAdjList(G, 1);
     return 1;
 }
